@@ -154,7 +154,9 @@ Expected asset shape:
 /critical-path-mapper/assets/index-*.css
 ```
 
-## Current deployment record
+## Deployment records
+
+### Initial deployment
 
 Initial deployment completed successfully using:
 
@@ -177,6 +179,36 @@ Verified public URLs:
 
 - `https://projects.danielmardis.com/`
 - `https://projects.danielmardis.com/critical-path-mapper/`
+
+### Timeline and readability deployment
+
+The timeline/readability sprint was deployed after commit:
+
+```text
+796ab21 Add timeline view and readability polish
+```
+
+Deployment details:
+
+- Pushed to `origin/main`.
+- Rebuilt with isolated Docker `node:22-bookworm`.
+- Deployed `dist/` to `/var/www/projects/critical-path-mapper/`.
+- No Caddy config changes were made.
+- No services were restarted.
+- Local deployment repo status was clean after deploy.
+
+Built assets at deployment time:
+
+```text
+/critical-path-mapper/assets/index-PatxKEl7.js
+/critical-path-mapper/assets/index-CpITIPFv.css
+```
+
+Smoke checks:
+
+- `https://projects.danielmardis.com/` returned HTTP/2 200.
+- `https://projects.danielmardis.com/critical-path-mapper/` returned HTTP/2 200.
+- App shell referenced assets correctly under `/critical-path-mapper/assets/`.
 
 ## Deployment principle
 
