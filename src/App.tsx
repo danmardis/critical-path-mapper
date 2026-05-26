@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { GitBranch, ListChecks, Map, Play, ShieldAlert, Zap } from 'lucide-react';
 import { analyzeTasks, exportMarkdown, getNextBestAction } from './critical-path';
 import { sampleProject, sampleTasks } from './sample-data';
@@ -110,7 +110,7 @@ export function App() {
 }
 
 type MetricCardProps = {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   value: string;
   detail: string;
@@ -129,8 +129,8 @@ function MetricCard({ icon, label, value, detail }: MetricCardProps) {
 
 type PanelProps = {
   title: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
+  icon: ReactNode;
+  children: ReactNode;
 };
 
 function Panel({ title, icon, children }: PanelProps) {
