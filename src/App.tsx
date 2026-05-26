@@ -1,6 +1,7 @@
 import { useMemo, useState, type ReactNode } from 'react';
-import { GitBranch, ListChecks, Map, Play, ShieldAlert, Zap } from 'lucide-react';
+import { GitBranch, Info, ListChecks, Map, Play, ShieldAlert, Zap } from 'lucide-react';
 import { analyzeTasks, exportMarkdown, getNextBestAction } from './critical-path';
+import { Timeline } from './components/Timeline';
 import { sampleProject, sampleTasks } from './sample-data';
 import type { TaskAnalysis } from './types';
 
@@ -58,13 +59,25 @@ export function App() {
         <MetricCard icon={<Zap />} label="Fast-Track Work" value={String(fastTrack.length)} detail="Parallel work that can move while the main path advances." />
       </section>
 
+      <Timeline tasks={analysis} />
+
+      <Panel title="How to Read This" icon={<Info />}>
+        <div className="legend-grid">
+          <LegendItem className="legend-critical" label="Critical Path" detail="Work that shapes the shortest path to done." />
+          <LegendItem className="legend-fast-track" label="Fast Track" detail="Safe parallel work." />
+          <LegendItem className="legend-waiting" label="Waiting" detail="Blocked by dependency." />
+          <LegendItem className="legend-active-damage" label="Active Damage" detail="Stops compounding risk." />
+          <LegendItem className="legend-done" label="Done" detail="Completed." />
+        </div>
+      </Panel>
+
       <section className="content-grid">
         <Panel title="Critical Path Candidates" icon={<Map />}>
           <TaskList tasks={critical} empty="No critical path candidates yet." />
         </Panel>
 
         <Panel title="Blocked Work" icon={<ShieldAlert />}>
-          <TaskList tasks={blockers} empty="No blocked tasks. Tiny parade." />
+          <TaskList tasks={blockers} empty="No blocked tasks." />
         </Panel>
       </section>
 
@@ -142,6 +155,24 @@ function Panel({ title, icon, children }: PanelProps) {
       </header>
       {children}
     </section>
+  );
+}
+
+type LegendItemProps = {
+  className: string;
+  label: string;
+  detail: string;
+};
+
+function LegendItem({ className, label, detail }: LegendItemProps) {
+  return (
+    <article className="legend-item">
+      <span className={`legend-swatch ${className}`} />
+      <div>
+        <h3>{label}</h3>
+        <p>{detail}</p>
+      </div>
+    </article>
   );
 }
 

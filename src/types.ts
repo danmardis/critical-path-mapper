@@ -13,6 +13,9 @@ export type Task = {
   projectId: string;
   title: string;
   description?: string;
+  startDay?: number;
+  durationDays?: number;
+  phase?: 'stabilize' | 'build' | 'polish' | 'deploy';
   status: TaskStatus;
   dependsOn: string[];
   effort: 1 | 2 | 3 | 4 | 5;

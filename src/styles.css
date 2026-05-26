@@ -64,7 +64,7 @@ h1 {
   max-width: 780px;
   font-size: clamp(2.35rem, 7vw, 5.7rem);
   line-height: 0.92;
-  letter-spacing: -0.075em;
+  letter-spacing: 0;
 }
 
 .hero-copy {
@@ -82,7 +82,7 @@ h1 {
   background: linear-gradient(180deg, var(--card-strong), var(--card));
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
   backdrop-filter: blur(14px);
-  border-radius: 28px;
+  border-radius: 8px;
 }
 
 .hero-card {
@@ -123,6 +123,9 @@ h1 {
 
 .metric-card {
   padding: 20px;
+  min-height: 220px;
+  display: grid;
+  align-content: start;
 }
 
 .icon-wrap {
@@ -135,6 +138,7 @@ h1 {
   background: rgba(125, 211, 252, 0.11);
   border: 1px solid rgba(125, 211, 252, 0.16);
   margin-bottom: 18px;
+  flex: 0 0 auto;
 }
 
 .icon-wrap svg {
@@ -159,6 +163,7 @@ h1 {
   margin: 8px 0;
   font-size: 1.35rem;
   line-height: 1.15;
+  min-height: 3.1rem;
 }
 
 .metric-card p,
@@ -183,6 +188,11 @@ h1 {
 .panel {
   padding: 20px;
   min-height: 260px;
+  margin-top: 16px;
+}
+
+.content-grid > .panel {
+  margin-top: 0;
 }
 
 .panel-header {
@@ -195,7 +205,7 @@ h1 {
 .panel-header h2 {
   margin: 0;
   font-size: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .mini-list,
@@ -209,7 +219,7 @@ h1 {
 .export-box {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.035);
-  border-radius: 20px;
+  border-radius: 8px;
 }
 
 .mini-list article {
@@ -227,6 +237,10 @@ h1 {
   color: var(--muted);
   line-height: 1.55;
   margin: 8px 0;
+}
+
+.task-row p {
+  max-width: 64ch;
 }
 
 .mini-list span,
@@ -252,7 +266,7 @@ h1 {
 
 .status {
   padding: 4px 8px;
-  border-radius: 999px;
+  border-radius: 8px;
   font-size: 0.72rem;
   color: var(--muted);
   background: rgba(255, 255, 255, 0.06);
@@ -273,7 +287,7 @@ h1 {
 
 .score-box {
   padding: 12px;
-  border-radius: 16px;
+  border-radius: 8px;
   text-align: center;
   background: rgba(125, 211, 252, 0.08);
   border: 1px solid rgba(125, 211, 252, 0.16);
@@ -289,7 +303,7 @@ h1 {
 .primary-button {
   width: 100%;
   border: 0;
-  border-radius: 16px;
+  border-radius: 8px;
   color: #031525;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   font-weight: 850;
@@ -308,6 +322,210 @@ h1 {
   line-height: 1.45;
 }
 
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  letter-spacing: 0;
+}
+
+.section-heading p {
+  max-width: 430px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.eyebrow.compact {
+  margin-bottom: 8px;
+}
+
+.timeline-panel {
+  overflow: hidden;
+}
+
+.timeline {
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.timeline-header,
+.timeline-row {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.9fr) repeat(var(--day-count), minmax(92px, 1fr));
+  min-width: calc(190px + (var(--day-count) * 92px));
+}
+
+.timeline-header {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.timeline-header span {
+  padding: 0 10px 12px;
+  text-align: center;
+}
+
+.timeline-rows {
+  display: grid;
+  gap: 10px;
+}
+
+.timeline-row {
+  align-items: stretch;
+}
+
+.timeline-task {
+  min-height: 58px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.timeline-task h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
+.timeline-task span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.timeline-track {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(var(--day-count), minmax(92px, 1fr));
+  align-items: center;
+  min-height: 58px;
+  padding: 8px 0;
+  border: 1px solid var(--line);
+  border-radius: 0 8px 8px 0;
+  background:
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc((100% / var(--day-count)) - 1px),
+      rgba(151, 177, 208, 0.14) calc((100% / var(--day-count)) - 1px),
+      rgba(151, 177, 208, 0.14) calc(100% / var(--day-count))
+    ),
+    rgba(255, 255, 255, 0.025);
+}
+
+.timeline-bar {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #06101d;
+  font-size: 0.73rem;
+  font-weight: 850;
+  text-align: center;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+}
+
+.timeline-critical {
+  background: linear-gradient(135deg, #7dd3fc, #38bdf8);
+}
+
+.timeline-fast-track {
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+}
+
+.timeline-waiting {
+  background: linear-gradient(135deg, #fb7185, #f43f5e);
+  color: #fff7f8;
+}
+
+.timeline-active-damage {
+  background: linear-gradient(135deg, #fbbf24, #fb923c);
+}
+
+.timeline-done {
+  background: linear-gradient(135deg, #86efac, #22c55e);
+}
+
+.timeline-standard {
+  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.legend-item {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 34px;
+  border-radius: 8px;
+}
+
+.legend-critical {
+  background: #38bdf8;
+}
+
+.legend-fast-track {
+  background: #a78bfa;
+}
+
+.legend-waiting {
+  background: #fb7185;
+}
+
+.legend-active-damage {
+  background: #f59e0b;
+}
+
+.legend-done {
+  background: #22c55e;
+}
+
+.legend-item h3 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.legend-item p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+  font-size: 0.88rem;
+}
+
 .footer {
   display: flex;
   flex-wrap: wrap;
@@ -323,8 +541,17 @@ h1 {
   .hero,
   .metrics-grid,
   .content-grid,
-  .content-grid.wide-left {
+  .content-grid.wide-left,
+  .legend-grid {
     grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-heading p {
+    margin-top: 12px;
   }
 }
 
@@ -340,5 +567,17 @@ h1 {
 
   h1 {
     font-size: clamp(2.4rem, 16vw, 4.4rem);
+  }
+
+  .hero-card {
+    min-height: 220px;
+  }
+
+  .metric-card {
+    min-height: 0;
+  }
+
+  .metric-card strong {
+    min-height: 0;
   }
 }
